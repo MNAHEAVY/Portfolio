@@ -10,7 +10,7 @@
     lg: "1000",
     xl: "1200",
     ws: "1400",
-    xw: "1600"
+    xw: "1600",
   };
 
   /*  ==========================================================================
@@ -20,7 +20,9 @@
   var isMobile = false; // initiate as false
   var isTouchDevice = !!("ontouchstart" in window);
 
-  if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  if (
+    /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  ) {
     isMobile = true;
   }
 
@@ -72,7 +74,7 @@
 
             // Fade out existing page
             $(".wrapper__page").addClass("wrapper__page--hide");
-          }
+          },
         },
         onReady: {
           //  Run once the requested content is ready to be injected into the page and the previous animations have finished
@@ -105,7 +107,7 @@
             $(".wrapper").addClass("wrapper--" + page_position);
             // Add new backround class
             $(".wrapper").addClass("wrapper--bg-" + page_bg);
-          }
+          },
         },
         onAfter: function ($container, $newContent) {
           // Fade in new content, add timeout if changing page position
@@ -122,7 +124,7 @@
             addBlacklistClass();
             page__init();
           }, 750);
-        }
+        },
       },
       smoothState = $("#wrapper").smoothState(options).data("smoothState");
   } // smoothstate__init()
@@ -144,7 +146,8 @@
     function updateScrollBar() {
       // Get position
       var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var height =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
       var scrolled = (winScroll / height) * 100;
 
       // Update bar width
@@ -171,7 +174,7 @@
       beforeClose: function () {
         // Remove hash
         history.replaceState("", document.title, window.location.pathname);
-      }
+      },
     });
 
     // Trigger fancybox on page load
@@ -321,7 +324,7 @@
                 item_items = 1; // if there isn't a second number it must be a single grid
               }
               responsive_array[item_width] = {
-                items: item_items
+                items: item_items,
               };
             }
           });
@@ -330,10 +333,13 @@
             nav: true,
             dots: false,
             items: 4,
-            navText: ["<i class='far fa-arrow-left'></i>", "<i class='far fa-arrow-right'></i>"],
+            navText: [
+              "<i class='far fa-arrow-left'></i>",
+              "<i class='far fa-arrow-right'></i>",
+            ],
             responsive: responsive_array,
             startPosition: $this_slidecount,
-            autoHeight: true
+            autoHeight: true,
           });
         }
       });
@@ -360,7 +366,7 @@
               $el.removeClass("effect--ready");
             }
           },
-          offset: "90%"
+          offset: "90%",
         });
       });
     } // effects__init()
@@ -378,7 +384,7 @@
       var data = {
         action: "loadmore",
         query: posts, // that's how we get params from wp_localize_script() function
-        page: current_page
+        page: current_page,
       };
       var button_text; // create variable to store button text
 
@@ -407,7 +413,7 @@
           } else {
             button.remove(); // if no data, remove the button as well
           }
-        }
+        },
       });
     });
 
@@ -511,7 +517,7 @@
                 $el.removeClass("text-reveal--ready");
               }
             },
-            offset: "95%"
+            offset: "95%",
           });
         });
     }
@@ -535,7 +541,7 @@
                 $el.removeClass("text-fade--ready");
               }
             },
-            offset: "100%"
+            offset: "100%",
           });
         });
     }
@@ -594,7 +600,9 @@
 
       $el.find("." + inner_class).css("animation-duration", duration + "ms");
       $el.find("." + inner_class + ":first-child()").css("animation-delay", delay + "ms");
-      $el.find("." + inner_class + ":nth-child(2)").css("animation-delay", delay * 2 + "ms");
+      $el
+        .find("." + inner_class + ":nth-child(2)")
+        .css("animation-delay", delay * 2 + "ms");
     }
 
     /*  ==========================================================================
@@ -638,8 +646,12 @@
       var delay = 0 - duration / 3;
 
       $el.find("." + dots_inner_class).css("animation-duration", duration + "ms");
-      $el.find("." + dots_inner_class + ":first-child()").css("animation-delay", delay + "ms");
-      $el.find("." + dots_inner_class + ":nth-child(2)").css("animation-delay", delay * 2 + "ms");
+      $el
+        .find("." + dots_inner_class + ":first-child()")
+        .css("animation-delay", delay + "ms");
+      $el
+        .find("." + dots_inner_class + ":nth-child(2)")
+        .css("animation-delay", delay * 2 + "ms");
 
       // Once everything is set up, add "loaded" class
       $el.addClass(dots_el_class + "--loaded");
@@ -679,7 +691,7 @@
         new Plyr(this, {
           controls: ["play", "progress"],
           hideControls: false,
-          tooltips: { controls: false, seek: false }
+          tooltips: { controls: false, seek: false },
         });
       });
     } // plyrs__init()
@@ -695,16 +707,16 @@
         $(".pageheader--page--home .pageheader__bg"),
         0.5,
         {
-          opacity: 1
+          opacity: 1,
         },
         {
-          opacity: 0
+          opacity: 0,
         }
       );
 
       var title_scroll = new ScrollMagic.Scene({
         offset: 0,
-        duration: "70%"
+        duration: "70%",
       })
         .setTween(bg_tween)
         .addTo(controller);
