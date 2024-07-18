@@ -74,6 +74,13 @@ function initParticles() {
   requestAnimationFrame(update);
 }
 
+function destroyParticles() {
+  if (window.pJSDom && window.pJSDom.length > 0) {
+    window.pJSDom[0].pJS.fn.vendors.destroypJS();
+    window.pJSDom = [];
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   if (document.getElementById("particles-js")) {
     initParticles();
@@ -85,7 +92,10 @@ $(function () {
   var options = {
     onAfter: function ($container) {
       if (document.getElementById("particles-js")) {
+        destroyParticles();
         initParticles();
+      } else {
+        destroyParticles();
       }
     },
   };
